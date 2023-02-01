@@ -1,0 +1,305 @@
+openapi: 3.0.0
+info:
+  description: Conference Reservation REST API
+  title: Conference Reservation REST API
+  version: 1.0.0
+servers:
+- description: Local dev server
+  url: http://localhost:8080/bookacon/api/v1
+paths:
+  /conference/{id}:
+    delete:
+      description: Removes existing Conference by id
+      operationId: removeConference
+      parameters:
+      - description: Conference id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenceDto'
+          description: removed Conference object
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request issue will produce this response.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Resource not found issue will produce this response.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error issue will produce this response.
+      summary: remove Conference
+      x-accepts: application/json
+    get:
+      description: Retrieves Conference by id.
+      operationId: getConferenceById
+      parameters:
+      - description: Conference id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenceDto'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Resource not found issue will produce this response.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error issue will produce this response.
+      summary: get Conference by id.
+      x-accepts: application/json
+    put:
+      description: Updates headcount for existing Conference by id providing a value
+        for headcount property.
+      operationId: updateHeadcountById
+      parameters:
+      - description: Conference id
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Value for headcount property of Conference
+        explode: true
+        in: query
+        name: headcount
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenceDto'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Resource not found issue will produce this response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request issue will produce this response.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Entity issue will produce this response.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error issue will produce this response.
+      summary: update headcount of Conference
+      x-accepts: application/json
+  /conference:
+    get:
+      description: Returns the list of Conferences
+      operationId: getConferences
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConferenceDto'
+                type: array
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request issue will produce this response.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error issue will produce this response.
+      summary: retrieve all  Conferences
+      x-accepts: application/json
+    post:
+      description: Creates a new Conference and reservation for it
+      operationId: createConference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConferenceDto'
+        description: Conference dto
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenceDto'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request issue will produce this response.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Entity issue will produce this response.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error issue will produce this response.
+      summary: create Conference
+      x-contentType: application/json
+      x-accepts: application/json
+    put:
+      description: Updates existing Conference
+      operationId: updateConference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConferenceDto'
+        description: Conference dto
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenceDto'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Resource not found issue will produce this response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request issue will produce this response.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Entity issue will produce this response.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error issue will produce this response.
+      summary: update Conference
+      x-contentType: application/json
+      x-accepts: application/json
+components:
+  schemas:
+    ConferenceDto:
+      description: Represents Conference buisness object, holding conference, participants
+        and related reservation details.
+      example:
+        scheduleSlot: 213
+        headcount: 202
+        occupation: 101
+        conferenceId: uuid-ddf4f
+      properties:
+        conferenceId:
+          description: Conference unique identifier
+          example: uuid-ddf4f
+          type: string
+        headcount:
+          description: Number of participants
+          example: 202
+          minimum: 1
+          type: integer
+        scheduleSlot:
+          description: Represents a notional schedule unit of Conference duration,
+            that is one calendar day. Value corresponds day number of a year.
+          example: 213
+          maximum: 362
+          minimum: 1
+          type: integer
+        occupation:
+          description: Room identifier, where conference is reserved to take place.
+          enum:
+          - 101
+          - 102
+          - 202
+          - 201
+          example: 101
+          type: integer
+      required:
+      - conferenceId
+      - headcount
+      - occupation
+      - scheduleSlot
+      type: object
+    ErrorResponse:
+      description: Custom ErrorResponse, utilizing the IETF devised RFC 7807
+      properties:
+        debugId:
+          description: Internal identifier used for search/corellation purposes.
+          type: string
+        title:
+          description: Human-readable, unique name of the error.
+          type: string
+        status:
+          description: The HTTP response code.
+          type: string
+        detail:
+          description: Human-readable description of the error.
+          type: string
+      type: object
+
