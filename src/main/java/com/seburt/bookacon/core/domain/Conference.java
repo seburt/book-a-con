@@ -5,21 +5,20 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
+/**
+ * Conference aggregator
+ */
 @Component
 @RequiredArgsConstructor
 @Data
 @Builder
 public class Conference {
 
-    UUID conferenceId;
-    int headcount;
-    int scheduleSlot;
-//    Map<Integer, Room> reservationSchedule;
-
-    // validation
-    // checks
+    private String conferenceId;
+    private int headcount;
+    private int scheduleSlot;
+    private Room room;
+    private ReservationsMap reservationsMap;
 
     // logic for creation
     // on creation - creates booking, if has a room
