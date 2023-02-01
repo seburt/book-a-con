@@ -18,14 +18,7 @@ public class Conference {
     private int headcount;
     private int scheduleSlot;
     private Room room;
-    private ReservationsMap reservationsMap;
+    private ReservationsGrid reservationsGrid;
 
-    // logic for creation
-    // on creation - creates booking, if has a room
-    // if not - Conf can't be created
-
-    // update: if reserved, cannot have more participants than booked capacity
-    //
-
-    // reservation
+    // todo business logic for conference reservation needs more details. To be discussed.
 }
