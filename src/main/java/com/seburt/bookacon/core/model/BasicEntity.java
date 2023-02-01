@@ -3,6 +3,7 @@ package com.seburt.bookacon.core.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.Instant;
 
@@ -10,7 +11,8 @@ import java.time.Instant;
 public abstract class BasicEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @UuidGenerator(style = UuidGenerator.Style.TIME)
     protected String id;
 
     @CreationTimestamp
