@@ -20,10 +20,10 @@ public class ConferenceController implements ConferenceApi{
     private ConferenceService conferenceService;
 
     @Override
-    public ResponseEntity<ConferenceDto> createConference(ConferenceDto conferenceDto) {
+    public ResponseEntity<ConferenceDto> createConference(ConferenceDto dto) {
 
-        val resp = ConferenceDto.builder()
-                .build();
+        val resp =
+                conferenceService.createConference(dto.getHeadcount(), dto.getScheduleSlot(), dto.getOccupation());
 
         log.info("Conference is created: {}", resp);
 
@@ -33,8 +33,8 @@ public class ConferenceController implements ConferenceApi{
     @Override
     public ResponseEntity<ConferenceDto> getConferenceById(String id) {
 
-        val resp = ConferenceDto.builder()
-                .build();
+        val resp =
+                conferenceService.getConferenceById(id);
 
         log.info("Conference: {}", resp);
 
@@ -44,9 +44,8 @@ public class ConferenceController implements ConferenceApi{
     @Override
     public ResponseEntity<List<ConferenceDto>> getConferences() {
 
-        val resp = List.of(
-                ConferenceDto.builder()
-                .build());
+        val resp =
+                conferenceService.getAllConferences();
 
         log.info("Conferences: {}", resp);
 
@@ -56,8 +55,8 @@ public class ConferenceController implements ConferenceApi{
     @Override
     public ResponseEntity<ConferenceDto> updateHeadcountById(String id, Integer headcount) {
 
-        val resp = ConferenceDto.builder()
-                .build();
+        val resp =
+                conferenceService.updateHeadcountById(id, headcount);
 
         log.info("Headcount updated for Conference: {}", resp);
 
@@ -67,8 +66,8 @@ public class ConferenceController implements ConferenceApi{
     @Override
     public ResponseEntity<ConferenceDto> removeConference(String id) {
 
-        val resp = ConferenceDto.builder()
-                .build();
+        val resp =
+                conferenceService.removeConference(id);
 
         log.info("Conference removed: {}", resp);
 
@@ -78,8 +77,8 @@ public class ConferenceController implements ConferenceApi{
     @Override
     public ResponseEntity<ConferenceDto> updateConference(ConferenceDto conferenceDto) {
 
-        val resp = ConferenceDto.builder()
-                .build();
+        val resp =
+                conferenceService.updateConference(conferenceDto);
 
         log.info("Conference is updated: {}", resp);
 

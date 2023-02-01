@@ -1,6 +1,9 @@
 package com.seburt.bookacon.core.model;
 
-public class ConferenceEntity {
+import jakarta.persistence.Entity;
+
+@Entity
+public class ConferenceEntity extends BasicEntity{
 
     // number of participants
     // reservationId
