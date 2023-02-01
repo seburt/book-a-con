@@ -1,17 +1,17 @@
 package com.seburt.bookacon.core.domain;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
  * Conference aggregator
  */
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Builder
 public class Conference {
 
     private String conferenceId;

@@ -5,6 +5,7 @@ import com.seburt.bookacon.core.repository.ConferenceRepo;
 import com.seburt.bookacon.core.service.ConferenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ConferenceServiceImpl implements ConferenceService {
 
+    @Autowired
     private ConferenceRepo conferenceRepo;
 
     @Override
