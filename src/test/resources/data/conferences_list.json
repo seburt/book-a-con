@@ -1,0 +1,26 @@
+[
+  {
+    "conferenceId": "32c465f3-6fec-4489-9de9-5a395108239e",
+    "headcount": 200,
+    "scheduleSlot": 205,
+    "occupation": 101
+  },
+  {
+    "conferenceId": "7e38aec6-2d80-4f69-afca-82b4f102e005",
+    "headcount": 200,
+    "scheduleSlot": 202,
+    "occupation": 101
+  },
+  {
+    "conferenceId": "94eeffc9-90a8-4e43-a383-666a308c2ccc",
+    "headcount": 200,
+    "scheduleSlot": 204,
+    "occupation": 101
+  },
+  {
+    "conferenceId": "5dba86f1-f1c1-4db0-9967-9b6a1c81ebef",
+    "headcount": 200,
+    "scheduleSlot": 202,
+    "occupation": 202
+  }
+]
