@@ -23,7 +23,3 @@ logging:
   jpa:
     generate-ddl: true
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-
-server:
-  servlet:
-    context-path: /bookacon/api/v1
