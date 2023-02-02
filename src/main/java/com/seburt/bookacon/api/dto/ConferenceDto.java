@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Represents Conference business object, holding conference, participants and related reservation details.
@@ -15,6 +16,7 @@ import lombok.Data;
 @Builder
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @ApiModel(description = "Represents Conference business object, holding conference, participants and related reservation details.")
 public class ConferenceDto {
 

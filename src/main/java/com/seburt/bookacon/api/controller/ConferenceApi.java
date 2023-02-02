@@ -131,6 +131,7 @@ public interface ConferenceApi {
             produces = {"application/json"}
     )
     ResponseEntity<ConferenceDto> updateHeadcountById(
+            @RequestBody(required = false)
             @PathVariable("id")  @ApiParam(value = "Conference id", required = true) String id,
             @RequestParam(value = "headcount", required = true) @ApiParam(value = "Value for headcount property of Conference", required = true) @Valid  @NotNull @Min(1) Integer headcount);
 
@@ -152,11 +153,13 @@ public interface ConferenceApi {
             @ApiResponse(code = 400, message = "Bad Request issue will produce this response.", response = ErrorResponse.class),
             @ApiResponse(code = 422, message = "Unprocessable Entity issue will produce this response.", response = ErrorResponse.class),
             @ApiResponse(code = 500, message = "Internal Server Error issue will produce this response.", response = ErrorResponse.class)})
-    @PutMapping(
-            value = "/conference",
+    @PostMapping(
+            value = "/conference/{id}",
             produces = {"application/json"},
             consumes = {"application/json"}
     )
-    ResponseEntity<ConferenceDto> updateConference(@ApiParam(value = "Conference dto", required = true) @Valid @RequestBody ConferenceDto conferenceDto);
+    ResponseEntity<ConferenceDto> updateConference(
+            @PathVariable("id")  @ApiParam(value = "Conference id", required = true) String id,
+            @ApiParam(value = "Conference dto", required = true) @Valid @RequestBody ConferenceDto conferenceDto);
 
 }

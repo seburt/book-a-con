@@ -19,7 +19,7 @@ class BookAConApplicationTests {
 
     @Test
     void contextLoads() throws Exception {
-        this.mockMvc.perform(
+        mockMvc.perform(
                         get("/conference")
                 )
                 .andDo(print())

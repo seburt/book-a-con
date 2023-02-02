@@ -80,6 +80,51 @@ paths:
           description: Internal Server Error issue will produce this response.
       summary: get Conference by id.
       x-accepts: application/json
+    post:
+      description: Updates existing Conference
+      operationId: updateConference
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConferenceDto'
+        description: Conference dto
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConferenceDto'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Resource not found issue will produce this response.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad Request issue will produce this response.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Unprocessable Entity issue will produce this response.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Internal Server Error issue will produce this response.
+      summary: update Conference
+      x-contentType: application/json
+      x-accepts: application/json
+
     put:
       description: Updates headcount for existing Conference by id providing a value
         for headcount property.
@@ -198,50 +243,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
           description: Internal Server Error issue will produce this response.
       summary: create Conference
-      x-contentType: application/json
-      x-accepts: application/json
-    put:
-      description: Updates existing Conference
-      operationId: updateConference
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ConferenceDto'
-        description: Conference dto
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ConferenceDto'
-          description: OK
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Resource not found issue will produce this response.
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Bad Request issue will produce this response.
-        "422":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Unprocessable Entity issue will produce this response.
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-          description: Internal Server Error issue will produce this response.
-      summary: update Conference
       x-contentType: application/json
       x-accepts: application/json
 components:
