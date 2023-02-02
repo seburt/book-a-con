@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.io.IOException;
 import java.net.URL;
 
-import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -40,6 +40,16 @@ class ConferenceControllerTest {
 
     @Test
     void createConference() {
+
+        expectedConference.setHeadcount(200);
+
+        RestAssuredMockMvc.given()
+                .header("Content-Type", "application/json")
+                .body(expectedConference)
+                .when()
+                .post("/conference")
+                .then().assertThat().body("headcount", equalTo(200));
+
     }
 
     @Test
@@ -48,10 +58,9 @@ class ConferenceControllerTest {
         expectedConference.setConferenceId("32c465f3-6fec-4489-9de9-5a395108239e");
 
         RestAssuredMockMvc.given()
-                .param("id", "32c465f3-6fec-4489-9de9-5a395108239e")
                 .when()
-                .get("/conference")
-                .then().assertThat().body("headcount", hasItems(expectedConference.getHeadcount()));
+                .get("/conference/32c465f3-6fec-4489-9de9-5a395108239e")
+                .then().assertThat().body("headcount", equalTo(200));
     }
 
     @Test
@@ -61,18 +70,44 @@ class ConferenceControllerTest {
                 .when()
                 .get("/conference")
                 .then().assertThat().body("$.size()", Matchers.equalTo(1));
-
     }
 
     @Test
     void updateHeadcountById() {
+
+        expectedConference.setHeadcount(130);
+
+        RestAssuredMockMvc.given()
+                .header("Content-Type", "application/json")
+                .param("headcount", "130")
+                .when()
+                .put("/conference/32c465f3-6fec-4489-9de9-5a395108239e")
+                .then().assertThat().body("headcount", equalTo(expectedConference.getHeadcount()));
+
     }
 
     @Test
     void removeConference() {
+
+        RestAssuredMockMvc.given()
+                .header("Content-Type", "application/json")
+                .when()
+                .delete("/conference/32c465f3-6fec-4489-9de9-5a395108239e")
+                .then().assertThat().body("headcount", equalTo(200));
     }
 
     @Test
     void updateConference() {
+
+        expectedConference.setConferenceId("32c465f3-6fec-4489-9de9-5a395108239e");
+        expectedConference.setScheduleSlot(130);
+
+        RestAssuredMockMvc.given()
+                .header("Content-Type", "application/json")
+                .body(expectedConference)
+                .when()
+                .post("/conference/32c465f3-6fec-4489-9de9-5a395108239e")
+                .then().assertThat().body("scheduleSlot", equalTo(expectedConference.getScheduleSlot()));
+
     }
 }

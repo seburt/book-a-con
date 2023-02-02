@@ -76,7 +76,7 @@ public class ConferenceController implements ConferenceApi{
     }
 
     @Override
-    public ResponseEntity<ConferenceDto> updateConference(ConferenceDto conferenceDto) {
+    public ResponseEntity<ConferenceDto> updateConference(String id, ConferenceDto conferenceDto) {
 
         val resp =
                 conferenceService.updateConference(conferenceDto);
